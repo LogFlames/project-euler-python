@@ -22,9 +22,31 @@ def generate_primes(n):
 
     return primes
 
-# print([x for x in range(2, 101) if not sum([x % y == 0 for y in range(2, x)])])
+primes = generate_primes(1000000)
+primes = {*map(str, primes)}
 
-primes = generate_primes(10_000_000)
+pp = {}
+for p1 in primes:
+    for p2 in primes:
+        if p1 >= p2:
+            continue
+
+        if p1 + p2 in primes and p2 + p1 in primes:
+            if p1 not in pp:
+                pp[p1] = []
+            if p2 not in pp:
+                pp[p2] = []
+            pp[p1].append(p2)
+            pp[p2].append(p1)
+
+ppp = {}
+
+for p in pp:
+    if len(pp[p]) >= 3:
+        ppp[p] = pp[p]
+
+print(ppp)
+print([*ppp])
 
 
 
