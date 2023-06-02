@@ -23,7 +23,7 @@ class Number:
 
 
 def conv_sqrt_2(iters, first = True):
-    if iters == 0:
+    if iters == 1:
         n = Number(0, 1)
     else:
         n = conv_sqrt_2(iters - 1, False)
@@ -37,7 +37,7 @@ def conv_sqrt_2(iters, first = True):
 
 
 def conv_sqrt_23(iters, first = True):
-    if iters == 0:
+    if iters == 1:
         n = Number(0, 1)
     else:
         n = conv_sqrt_23(iters - 1, False)
@@ -50,7 +50,7 @@ def conv_sqrt_23(iters, first = True):
     return n2
 
 def conv_e(iters, first = True, depth = -1):
-    if iters == 0:
+    if iters == 1:
         n = Number(0, 1)
     else:
         n = conv_e(iters - 1, first = False, depth = depth + 1)
@@ -66,5 +66,7 @@ def conv_e(iters, first = True, depth = -1):
         n2 = Number(1, 1) // (Number(v, 1) + n)
     return n2
 
-n = conv_e(99)
+n = conv_e(10)
+print(sum(map(int, str(n.num))))
+n = conv_e(100)
 print(sum(map(int, str(n.num))))
