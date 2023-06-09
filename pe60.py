@@ -50,12 +50,10 @@ def is_prime(num):
 dp = {}
 
 def check_pair(p1, p2):
-    global count
     r1, r2 = rev_lookup[p1], rev_lookup[p2]
     i1, i2 = min(r1, r2), max(r1, r2)
     tup = (i1, i2)
     if tup in dp:
-        count += 1
         return dp[tup]
     res = is_prime(p1 + p2) and is_prime(p2 + p1)
     dp[tup] = res
@@ -64,11 +62,9 @@ def check_pair(p1, p2):
 count = 0
 
 def check_pair_i(r1, r2):
-    global count
     i1, i2 = min(r1, r2), max(r1, r2)
     tup = (i1, i2)
     if tup in dp:
-        count += 1
         return dp[tup]
     res = is_prime(primes_strs[i1] + primes_strs[i2]) and is_prime(primes_strs[i2] + primes_strs[i1])
     dp[tup] = res
@@ -84,19 +80,6 @@ def check(a, b, smallest_sum_yet):
             break
         if check_pair_i(ai, ind) and check_pair_i(bi, ind):
             workes_with_a_and_b.append(primes_strs[ind])
-
-
-    """
-    for prime in primes_strs:
-        ip = int(prime)
-        if ip < int(a):
-            continue
-        if ip > smallest_sum_yet:
-            break
-        if check_pair(a, prime) and check_pair(b, prime):
-            workes_with_a_and_b.append(prime)
-    """
-
 
     workes_with_a_and_b.sort(key = lambda x: int(x))
 
@@ -159,6 +142,4 @@ for p in primes:
             if ss < smallest_sum_yet:
                 smallest_sum_yet = ss
 
-print(count)
-print(len(dp))
 print(smallest_sum_yet)
